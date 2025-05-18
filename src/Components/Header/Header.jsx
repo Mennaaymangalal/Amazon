@@ -52,9 +52,9 @@ export default function Header() {
         <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X className="w-9 h-9" /> : <Menu className="w-9 h-9" />}
         </button>
-        <div className="w-[120px]  shrink-0">
+        <Link to={'/'} className="w-[120px]  shrink-0">
           <img src={logo} alt="logo" className="w-full object-contain" />
-        </div>
+        </Link>
       </div>
 
       {/* Middle: Search Input */}
