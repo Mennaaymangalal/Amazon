@@ -4,14 +4,18 @@ import MainLayout from './Layouts/MainLayout/MainLayout'
 import Home from './Pages/Home/Home'
 import Login from './Pages/Login/Login'
 import NotFound from './Pages/NotFound/NotFound'
+import Orders from './Pages/Orders/Orders'
+import Cart from './Pages/Cart/Cart'
 
 export default function App() {
 
   const router = createBrowserRouter([
+    {path:'login' , element:<Login/>},
     {path:'/' , element:<MainLayout/> , children:[
-      {index:true , element:<Home/>},
-      {path:'login' , element:<Login/>},
+      {index:true , element:<Home/>},      
       {path:'*', element:<NotFound/>},
+      {path:'orders', element:<Orders/>},
+       {path:'cart', element:<Cart/>},
     ]}
   ])
 

@@ -3,6 +3,7 @@ import { Input } from "@heroui/react";
 import { Menu, X } from "lucide-react";
 import logo from "../../assets/imges/header-logo.png";
 import shoppingCart from "../../assets/icons/shopping-cart.png";
+import { Link } from "react-router-dom";
 
 export const SearchIcon = ({
   size = 24,
@@ -75,21 +76,22 @@ export default function Header() {
 
       {/* Right: Desktop Menu */}
       <div className="hidden md:flex  gap-6 text-left items-center">
-        <div className="flex flex-col items-start">
+        <Link to={'login'} className="flex flex-col items-start">
           <p className="text-sm font-light">Hello Guest</p>
           <h3 className="text-sm font-semibold">Sign in</h3>
-        </div>
-        <div className="flex flex-col items-start">
+        </Link>
+        <Link to={'orders'} className="flex flex-col items-start">
           <p className="text-sm font-light">Returns</p>
           <h3 className="text-sm font-semibold">& Orders</h3>
-        </div>
+        </Link>
         <div className="flex flex-col items-start">
           <p className="text-sm font-light">Your</p>
           <h3 className="text-sm font-semibold">Prime</h3>
         </div>
-        <div className="flex items-center">
+        <Link to={'cart'} className="flex items-center">
           <img src={shoppingCart} alt="shopping cart" className="w-6 h-6" />
-        </div>
+          <p className="text-sm font-light ps-2">4</p>
+        </Link>
       </div>
 
       {/* Right: Mobile Dropdown Menu (row layout) */}
@@ -109,6 +111,7 @@ export default function Header() {
           </div>
           <div className="flex items-center">
             <img src={shoppingCart} alt="shopping cart" className="w-6 h-6" />
+            <p className="text-sm font-light ps-2">4</p>
           </div>
         </div>
       )}
