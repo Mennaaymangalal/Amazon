@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#131921] text-white">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
+        <div className="flex px-4  items-center justify-center flex-col md:flex-row md:justify-between">
           <a
             href="/"
             className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
@@ -44,7 +44,7 @@ export default function Footer() {
 
         <hr className="my-6 border-gray-400 sm:mx-auto lg:my-8" />
 
-        <span className="block text-sm text-white sm:text-center">
+        <span className="block text-sm text-white text-center">
           © 2023{" "}
           <a href="/" className="hover:underline font-semibold">
             Menna Ayman
