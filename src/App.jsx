@@ -6,12 +6,12 @@ import Login from './Pages/Login/Login'
 import NotFound from './Pages/NotFound/NotFound'
 import Orders from './Pages/Orders/Orders'
 import Cart from './Pages/Cart/Cart'
-import GlobalProvider from './Contexts/GlobalContext/GlobalContext'
+import GlobalProvider, { useAuth } from './Contexts/GlobalContext/GlobalContext'
 
 
 
 export default function App() {
-
+ 
   const router = createBrowserRouter([
     {path:'login' , element:<Login/>},
     {path:'/' , element:<MainLayout/> , children:[
@@ -22,7 +22,7 @@ export default function App() {
     ]}
   ])
 
-  return (
+    return (
     <>
       <GlobalProvider>
        <HeroUIProvider>

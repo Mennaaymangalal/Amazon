@@ -1,21 +1,70 @@
 
 import { Button, Checkbox, Input } from '@heroui/react'
 import logo from '../../assets/imges/login-logo.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {auth} from '../../firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import { useAuth } from '../../Contexts/GlobalContext/GlobalContext'
 
 export default function Login() {
   const {user} = useAuth()
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState("")  
   const [password, setPassword] = useState("")
-   function handleRegister(e){
-    e.preventDefault()
-    createUserWithEmailAndPassword(auth,email,password)
-   }
-   console.log(user)
+  const [error, setError] = useState("")
+  const navigate = useNavigate()
+
+  function handleSignIn(e){
+      e.preventDefault()
+      signInWithEmailAndPassword(auth,email,password)
+      .then(()=>{
+       if(auth){
+        setError("")
+        navigate("/")        
+       }
+      }) .catch((error) => {
+      switch (error.code) {
+        case "auth/invalid-credential":
+        case "auth/user-not-found":
+          setError("Email or password is incorrect.")
+          break
+        case "auth/wrong-password":
+          setError("Incorrect password.")
+          break
+        case "auth/invalid-email":
+          setError("Please enter a valid email address.")
+          break
+        default:
+          setError("Something went wrong. Please try again.")
+      }
+  })
+  }
+   function handleRegister(e) {
+  e.preventDefault()
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((auth)=>{
+    if(auth){
+    setError("")
+    navigate("/")   
+    }
+  })
+  .catch((error) => {
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          setError("This email is already registered.")          
+          break
+        case "auth/invalid-email":
+          setError("Please enter a valid email address.")
+          break
+        case "auth/weak-password":
+          setError("Password should be at least 6 characters.")
+          break
+        default:
+          setError("Something went wrong. Please try again.")
+      }
+    })
+}
+
   return (
     <>
   <div className=" py-6 flex flex-col items-center">
@@ -55,8 +104,11 @@ export default function Login() {
     className="w-full h-8 px-3 py-2 border border-black bg-white text-black text-sm "
   />
  </div>
+  {/* Error display */}
+   {error && <p className="text-sm text-red-500">{error}</p>}
+ 
  {/* login button */}
- <Button type='submit'  className='rounded-none bg-[#cd9042] h-8'>
+ <Button onClick={handleSignIn} type='submit'  className='rounded-none bg-[#cd9042] h-8'>
   Sign in
  </Button>
  {/* checkbox */}
@@ -75,13 +127,12 @@ export default function Login() {
   </p>
 </label>
  </div>
- 
+
  {/* signup button */}
  <Button onClick={handleRegister} type='submit' className='rounded-none mb-2 h-8'>
  Create your Amazon Account
- </Button>
-
-    </div>  
+ </Button>  
+    </div>      
   </form>
   </div>
   

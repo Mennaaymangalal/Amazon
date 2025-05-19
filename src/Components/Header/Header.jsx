@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 import logo from "../../assets/imges/header-logo.png";
 import shoppingCart from "../../assets/icons/shopping-cart.png";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Contexts/GlobalContext/GlobalContext";
+import { auth } from "../../firebase";
 
 export const SearchIcon = ({
   size = 24,
@@ -44,6 +46,12 @@ export const SearchIcon = ({
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {user} = useAuth() 
+
+  function handleSingOut(){
+    auth.signOut()
+  }
+ 
 
   return (
     <div className="bg-[#131921] text-white py-2 px-4 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -76,9 +84,9 @@ export default function Header() {
 
       {/* Right: Desktop Menu */}
       <div className="hidden md:flex  gap-6 text-left items-center">
-        <Link to={'login'} className="flex flex-col items-start">
-          <p className="text-sm font-light">Hello Guest</p>
-          <h3 className="text-sm font-semibold">Sign in</h3>
+        <Link onClick={handleSingOut} to={!user && 'login'} className="flex flex-col items-start">
+          <p className="text-sm font-light">Hello {user ? user?.email :"Guest"}</p>
+          <h3 className="text-sm font-semibold">{user ? "Sign out" : "Sign in"}</h3>
         </Link>
         <Link to={'orders'} className="flex flex-col items-start">
           <p className="text-sm font-light">Returns</p>
@@ -97,10 +105,10 @@ export default function Header() {
       {/* Right: Mobile Dropdown Menu (row layout) */}
       {isMenuOpen && (
         <div className="w-full px-6 flex flex-row justify-between items-center gap-4 lg:hidden">
-          <div className="flex flex-col items-center">
-            <p className="text-sm font-light">Hello Guest</p>
-            <h3 className="text-sm font-semibold">Sign in</h3>
-          </div>
+          <Link to={!user && 'login'} className="flex flex-col items-center">
+            <p className="text-sm font-light">Hello {user ? user?.email :"Guest"}</p>
+            <h3 className="text-sm font-semibold">{user ? "Sign out" : "Sign in"}</h3>
+          </Link>
           <div className="flex flex-col items-center">
             <p className="text-sm font-light">Returns</p>
             <h3 className="text-sm font-semibold">& Orders</h3>
