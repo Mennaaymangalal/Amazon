@@ -37,10 +37,10 @@ export default function Product({id , title , image , price , rating}) {
   </div>
 
   {/* Button */}
-  <div className="flex justify-center">
-    <Button className="bg-[#cd9042] hover:scale-95 transition-transform duration-200">
-      Add to Basket
-    </Button>
+  <div className="flex justify-center mt-4">
+   <Button className="bg-[#cd9042] active:scale-90 transition-transform duration-200">
+     Add to Basket
+   </Button>
   </div>
 </div>
 
