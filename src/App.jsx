@@ -6,6 +6,9 @@ import Login from './Pages/Login/Login'
 import NotFound from './Pages/NotFound/NotFound'
 import Orders from './Pages/Orders/Orders'
 import Cart from './Pages/Cart/Cart'
+import GlobalProvider from './Contexts/GlobalContext/GlobalContext'
+
+
 
 export default function App() {
 
@@ -21,9 +24,12 @@ export default function App() {
 
   return (
     <>
-      <HeroUIProvider>
+      <GlobalProvider>
+       <HeroUIProvider>
       <RouterProvider router={router}></RouterProvider>
       </HeroUIProvider>
+      </GlobalProvider> 
+     
      
     </>
   )

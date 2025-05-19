@@ -7,3 +7,8 @@
     .container{ @apply m-0 p-0 gap-0;
     }
 } */
+
+body{
+    min-height: 100vh;
+     background-color: rgb(234, 237, 237);
+}
