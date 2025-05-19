@@ -6,7 +6,7 @@ import { useAuth } from '../../Contexts/GlobalContext/GlobalContext'
 
 export default function Product({id , title , image , price , rating}) {
 
-  const { dispatch ,basket } = useAuth()
+  const { dispatch } = useAuth()
   function handleAddToBasket(){
     dispatch({
       type: "ADD_TO_BASKET" ,
@@ -18,10 +18,7 @@ export default function Product({id , title , image , price , rating}) {
         rating:rating
       }
     })
-  } 
-  
-  console.log(basket)
-
+  }   
   return (
     <>
   

@@ -1,3 +1,5 @@
+import { Button } from "@heroui/button"
+import CheckoutProduct from "../../Components/CheckoutProduct/CheckoutProduct"
 import { useAuth } from "../../Contexts/GlobalContext/GlobalContext"
 import img from '../../assets/imges/checkoutAd.jpg'
 
@@ -10,89 +12,64 @@ export default function Checkout() {
     <>
       {
         basket?.length === 0 ? 
-        <div className=" h-full min-h-screen flex items-center justify-center "> 
+      <>
+        <div className="mb-4 pt-2">
+            <img src={img} alt="" />
+          </div> 
+        <div className=" h-full min-h-screen flex  justify-center "> 
         <h1 className="text-2xl font-semibold">No Products in your Cart</h1>
         </div> 
+      </>
         :
     <div className="">       
     <div className=" min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4">       
 
+        {/* Left Section */}        
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Product Section */}          
-          <div className="w-full md:w-3/4"> 
+          {/* Product Section */}    
+            <div className="w-full md:w-3/4"> 
           <div className="mb-4">
             <img src={img} alt="" />
           </div> 
-          <p className="text-lg font-semibold ">Hello {user ? user?.email :"Guest"}</p>
-          <h1 className="text-2xl font-semibold mb-6 text-center md:text-left">Your Shopping Cart</h1>
 
-            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 overflow-x-auto">
-              <table className="w-full min-w-[600px]">
-                <thead>
-                  <tr className="border-b">
-                    <th className="text-left font-semibold py-2">Product</th>
-                    <th className="text-left font-semibold py-2">Price</th>
-                    <th className="text-left font-semibold py-2">Quantity</th>
-                    <th className="text-left font-semibold py-2">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b">
-                    <td className="py-4">
-                      <div className="flex items-center">
-                        <img
-                          className="h-16 w-16 object-cover mr-4"
-                          src="https://via.placeholder.com/150"
-                          alt="Product"
-                        />
-                        <span className="font-medium text-sm">Product name</span>
-                      </div>
-                    </td>
-                    <td className="py-4 text-sm">$19.99</td>
-                    <td className="py-4">
-                      <div className="flex items-center">
-                        <button className="border rounded-md py-1 px-3 text-sm">-</button>
-                        <span className="mx-3 w-6 text-center text-sm">1</span>
-                        <button className="border rounded-md py-1 px-3 text-sm">+</button>
-                      </div>
-                    </td>
-                    <td className="py-4 text-sm">$19.99</td>
-                  </tr>
-                  {/* Additional product rows go here */}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <p className="text-lg font-semibold ">Hello {user ? user?.email :"Guest"}</p>
+          <h1 className="text-2xl font-semibold mb-6  text-left">Your Shopping Cart</h1>
+          
+             {  
+                     
+             basket.map((item , index)=>(
+             <div key={index} className="">
+               <CheckoutProduct
+               id={item.id}
+               title={item.title}
+               image={item.image}
+               price={item.price}
+               rating={item.rating}
+               />
+             </div>
+             ))
+         }          
+          </div>           
+       
+
 
           {/* Summary Section */}
           <div className="w-full md:w-1/4">
-            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
-              <h2 className="text-lg font-semibold mb-4">Summary</h2>
-
-              <div className="flex justify-between mb-2 text-sm">
-                <span>Subtotal</span>
-                <span>$19.99</span>
-              </div>
-              <div className="flex justify-between mb-2 text-sm">
-                <span>Taxes</span>
-                <span>$1.99</span>
-              </div>
-              <div className="flex justify-between mb-2 text-sm">
-                <span>Shipping</span>
-                <span>$0.00</span>
-              </div>
-
-              <hr className="my-2" />
-
-              <div className="flex justify-between mb-2 font-semibold text-sm">
-                <span>Total</span>
-                <span>$21.98</span>
-              </div>
-
-              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg mt-4 w-full text-sm">
-                Checkout
-              </button>
+            <div className="bg-gray-200 border border-gray-300  rounded-lg  p-4 sm:p-6">
+               <div className="text-sm">
+                <span>Subtotal (4 Items): <strong>$19.99</strong></span>                
+              </div>            
+               <div className="">
+                 <input  className="w-3 h-3" id="checkbox" type="checkbox" />
+                <label className="text-xs text-center"  htmlFor="checkbox"> This order contain a gift</label>
+               
+               </div>
+            <div className="flex items-center justify-center">
+              <Button className="w-full h-8 py-2 px-4 mt-4 rounded-none bg-[#cd9042] text-xs">
+                Proceed to Checkout
+              </Button>
+            </div>
             </div>
           </div>
         </div>
