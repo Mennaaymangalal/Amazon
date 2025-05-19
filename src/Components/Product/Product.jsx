@@ -1,9 +1,27 @@
 import { Button } from '@heroui/button'
 import starIcon from '../../assets/icons/star.png'
+import { useAuth } from '../../Contexts/GlobalContext/GlobalContext'
 
 
 
 export default function Product({id , title , image , price , rating}) {
+
+  const { dispatch ,basket } = useAuth()
+  function handleAddToBasket(){
+    dispatch({
+      type: "ADD_TO_BASKET" ,
+      item:{
+        id:id,
+        title:title,
+        image:image,
+        price:price,
+        rating:rating
+      }
+    })
+  } 
+  
+  console.log(basket)
+
   return (
     <>
   
@@ -38,7 +56,7 @@ export default function Product({id , title , image , price , rating}) {
 
   {/* Button */}
   <div className="flex justify-center mt-4">
-   <Button className="bg-[#cd9042] active:scale-90 transition-transform duration-200">
+   <Button onClick={handleAddToBasket} className="bg-[#cd9042] active:scale-90 transition-transform duration-200">
      Add to Basket
    </Button>
   </div>

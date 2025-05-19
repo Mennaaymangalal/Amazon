@@ -5,8 +5,8 @@ import Home from './Pages/Home/Home'
 import Login from './Pages/Login/Login'
 import NotFound from './Pages/NotFound/NotFound'
 import Orders from './Pages/Orders/Orders'
-import Cart from './Pages/Cart/Cart'
 import GlobalProvider, { useAuth } from './Contexts/GlobalContext/GlobalContext'
+import Checkout from './Pages/Checkout/Checkout'
 
 
 
@@ -18,7 +18,7 @@ export default function App() {
       {index:true , element:<Home/>},      
       {path:'*', element:<NotFound/>},
       {path:'orders', element:<Orders/>},
-       {path:'cart', element:<Cart/>},
+       {path:'checkout', element:<Checkout/>},
     ]}
   ])
 

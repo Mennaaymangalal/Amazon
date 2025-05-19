@@ -46,7 +46,7 @@ export const SearchIcon = ({
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {user} = useAuth() 
+  const {user ,basket} = useAuth() 
 
   function handleSingOut(){
     auth.signOut()
@@ -96,9 +96,9 @@ export default function Header() {
           <p className="text-sm font-light">Your</p>
           <h3 className="text-sm font-semibold">Prime</h3>
         </div>
-        <Link to={'cart'} className="flex items-center">
+        <Link to={'checkout'} className="flex items-center">
           <img src={shoppingCart} alt="shopping cart" className="w-6 h-6" />
-          <p className="text-sm font-light ps-2">4</p>
+          <p className="text-sm font-light ps-2">{basket?.length}</p>
         </Link>
       </div>
 
@@ -109,18 +109,18 @@ export default function Header() {
             <p className="text-sm font-light">Hello {user ? user?.email :"Guest"}</p>
             <h3 className="text-sm font-semibold">{user ? "Sign out" : "Sign in"}</h3>
           </Link>
-          <div className="flex flex-col items-center">
+          <Link  to={'orders'} className="flex flex-col items-center">
             <p className="text-sm font-light">Returns</p>
             <h3 className="text-sm font-semibold">& Orders</h3>
-          </div>
+          </Link>
           <div className="flex flex-col items-center">
             <p className="text-sm font-light">Your</p>
             <h3 className="text-sm font-semibold">Prime</h3>
           </div>
-          <div className="flex items-center">
+          <Link to={'checkout'} className="flex items-center">
             <img src={shoppingCart} alt="shopping cart" className="w-6 h-6" />
-            <p className="text-sm font-light ps-2">4</p>
-          </div>
+            <p className="text-sm font-light ps-2">{basket?.length}</p>
+          </Link>
         </div>
       )}
     </div>
