@@ -41,7 +41,7 @@ export default function Payment() {
        {
         basket.length == 0 ?
         <div className="flex  items-center">
-             <h3 className="text-center font-semibold text-md">Your Basket is Empty</h3> 
+             <h3 className="text-center font-semibold text-md">No Items in your Basket.</h3> 
         </div>
           : 
          <div className="w-full md:w-4/5 p-4">          
