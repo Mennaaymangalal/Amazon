@@ -104,7 +104,7 @@ export default function Header() {
 
       {/* Right: Mobile Dropdown Menu (row layout) */}
       {isMenuOpen && (
-        <div className="w-full px-6 flex flex-row justify-between items-center gap-4 lg:hidden">
+        <div className="w-full px-6 flex flex-row justify-between items-center gap-4 md:hidden">
           <Link to={!user && 'login'} className="flex flex-col items-center">
             <p className="text-sm font-light">Hello {user ? user?.email :"Guest"}</p>
             <h3 className="text-sm font-semibold">{user ? "Sign out" : "Sign in"}</h3>

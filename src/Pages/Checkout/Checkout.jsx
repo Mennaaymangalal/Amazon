@@ -4,6 +4,7 @@ import { useAuth } from "../../Contexts/GlobalContext/GlobalContext"
 import img from '../../assets/imges/checkoutAd.jpg'
 import {formatCurrency} from '../../helper/formatCurrency'
 import { getBasketTotal } from "../../Contexts/GlobalContext/AppReducer"
+import { Link } from "react-router-dom"
 
 
 export default function Checkout() {
@@ -28,7 +29,7 @@ export default function Checkout() {
             </div>
           </div> 
         <div className=" h-full min-h-screen flex  justify-center "> 
-        <h1 className="text-xl font-semibold"> You have no items in your basket.To buy one or more
+        <h1 className="text-xl font-semibold px-5"> You have no items in your basket.To buy one or more
               items,click"Add to basket".</h1>
         </div> 
       </>
@@ -82,17 +83,17 @@ export default function Checkout() {
                 <label className="text-xs text-center"  htmlFor="checkbox"> This order contain a gift</label>
                
                </div>
-            <div className="flex items-center justify-center">
-              <Button className="w-full h-8 py-2 px-4 mt-4 rounded-none bg-[#cd9042] text-xs">
+             <Link to={"/payment"} className="flex items-center justify-center">
+               <button  className="w-full h-8 py-2 px-4 mt-4 rounded-none bg-[#cd9042] text-xs">
                 Proceed to Checkout
-              </Button>
-            </div>
+              </button>
+            </Link>
             </div>
           </div>
         </div>
       </div>
     </div>
-         </div>
+   </div>
       }
     </>
   )
