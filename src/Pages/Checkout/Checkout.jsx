@@ -2,6 +2,8 @@ import { Button } from "@heroui/button"
 import CheckoutProduct from "../../Components/CheckoutProduct/CheckoutProduct"
 import { useAuth } from "../../Contexts/GlobalContext/GlobalContext"
 import img from '../../assets/imges/checkoutAd.jpg'
+import {formatCurrency} from '../../helper/formatCurrency'
+import { getBasketTotal } from "../../Contexts/GlobalContext/AppReducer"
 
 
 export default function Checkout() {
@@ -13,8 +15,12 @@ export default function Checkout() {
       {
         basket?.length === 0 ? 
       <>
-        <div className="mb-4 pt-2">
+        <div className="mb-4 pt-2 p-5">
             <img src={img} alt="" />
+            <div className="pt-4">
+          <p className="text-lg font-semibold ">Hello {user ? user?.email :"Guest"}</p>
+          <h1 className="text-2xl font-semibold mb-6 pb-4 border-gray-300  text-left border-b-2">Your Shopping Cart</h1>
+            </div>
           </div> 
         <div className=" h-full min-h-screen flex  justify-center "> 
         <h1 className="text-2xl font-semibold">No Products in your Cart</h1>
@@ -22,7 +28,7 @@ export default function Checkout() {
       </>
         :
     <div className="">       
-    <div className=" min-h-screen py-8">
+    <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4">       
 
         {/* Left Section */}        
@@ -34,7 +40,7 @@ export default function Checkout() {
           </div> 
 
           <p className="text-lg font-semibold ">Hello {user ? user?.email :"Guest"}</p>
-          <h1 className="text-2xl font-semibold mb-6  text-left">Your Shopping Cart</h1>
+          <h1 className="text-2xl font-semibold mb-6 pb-4 border-gray-300  text-left border-b-2">Your Shopping Cart</h1>
           
              {  
                      
@@ -58,7 +64,7 @@ export default function Checkout() {
           <div className="w-full md:w-1/4">
             <div className="bg-gray-200 border border-gray-300  rounded-lg  p-4 sm:p-6">
                <div className="text-sm">
-                <span>Subtotal (4 Items): <strong>$19.99</strong></span>                
+                <span>Subtotal ( {basket.length} Items): <strong>{formatCurrency(getBasketTotal(basket))}</strong></span>                
               </div>            
                <div className="">
                  <input  className="w-3 h-3" id="checkbox" type="checkbox" />

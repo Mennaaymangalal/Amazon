@@ -1,4 +1,9 @@
 
+export const getBasketTotal = (basket) => {
+  return basket.reduce((amount, item) => amount + item.price, 0)
+}
+
+
 export const initialState = {
     user: null ,
     basket : []
