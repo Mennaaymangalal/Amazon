@@ -7,8 +7,13 @@ import { getBasketTotal } from "../../Contexts/GlobalContext/AppReducer"
 
 
 export default function Checkout() {
-  const { user , basket } = useAuth()
-
+  const { user , basket ,dispatch } = useAuth()
+  
+   function RemoveBasket(){
+    dispatch({
+      type:"REMOVE_BASKET"
+    })
+  }
 
   return (
     <>
@@ -42,6 +47,11 @@ export default function Checkout() {
 
           <p className="text-lg font-semibold ">Hello {user ? user?.email :"Guest"}</p>
           <h1 className="text-2xl font-semibold mb-6 pb-4 border-gray-300  text-left border-b-2">Your Shopping Cart</h1>
+           <div className="mb-4 ">
+           <Button onClick={RemoveBasket} className='bg-[#cd9042] active:scale-90 transition-transform duration-200'>
+              Clear all Basket
+           </Button>
+   </div>
           
              {  
                      

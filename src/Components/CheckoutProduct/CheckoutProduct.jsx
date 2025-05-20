@@ -13,9 +13,12 @@ export default function CheckoutProduct({ id , title , image , price , rating })
       id: id
     })
   }
+
+ 
  
   return (
     <>  
+  
     <div className="bg-white mb-4 grid grid-cols-1 md:grid-cols-5 gap-4 rounded-lg shadow-md p-4 items-center">
       
       {/* Product Image */}
