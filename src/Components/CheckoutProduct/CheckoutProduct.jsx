@@ -1,8 +1,18 @@
 import { Button } from '@heroui/button'
 import starIcon from '../../assets/icons/star.png'
+import { useAuth } from '../../Contexts/GlobalContext/GlobalContext'
 
 
 export default function CheckoutProduct({ id , title , image , price , rating }) {
+  
+  const { dispatch } = useAuth()
+
+  function handleRemoveFromBasket(){
+    dispatch({
+      type:"REMOVE_FROM_BASKET" ,
+      id: id
+    })
+  }
  
   return (
     <>  
@@ -31,7 +41,7 @@ export default function CheckoutProduct({ id , title , image , price , rating })
 
         {/* Optional Actions */}
         <div>
-          <Button className="bg-[#cd9042] active:scale-90 transition-transform duration-200">
+          <Button onClick={handleRemoveFromBasket} className="bg-[#cd9042] active:scale-90 transition-transform duration-200">
             Remove from Basket
           </Button>
         </div>

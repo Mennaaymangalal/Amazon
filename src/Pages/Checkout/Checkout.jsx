@@ -23,7 +23,8 @@ export default function Checkout() {
             </div>
           </div> 
         <div className=" h-full min-h-screen flex  justify-center "> 
-        <h1 className="text-2xl font-semibold">No Products in your Cart</h1>
+        <h1 className="text-xl font-semibold"> You have no items in your basket.To buy one or more
+              items,click"Add to basket".</h1>
         </div> 
       </>
         :
